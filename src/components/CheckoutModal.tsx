@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./CheckoutModal.module.css";
+import { apiClient } from "../lib/api-client";
 
 declare global {
   interface Window {
@@ -49,7 +50,6 @@ export default function CheckoutModal({
   const [couponResult, setCouponResult] = useState<CouponResult | null>(null);
   const [couponError, setCouponError] = useState("");
   const [validatingCoupon, setValidatingCoupon] = useState(false);
-  const [orderData, setOrderData] = useState<OrderData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -70,17 +70,13 @@ export default function CheckoutModal({
     setCouponError("");
     setCouponResult(null);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/validate-coupon`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ code: couponInput.trim().toUpperCase(), planId }),
+      const res = await apiClient.post("/payments/validate-coupon", {
+        code: couponInput.trim().toUpperCase(),
+        planId,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || data.message || "Invalid coupon");
-      setCouponResult(data.data);
+      setCouponResult(res.data.data);
     } catch (err: any) {
-      setCouponError(err.message);
+      setCouponError(err.response?.data?.error || err.message || "Invalid coupon");
     } finally {
       setValidatingCoupon(false);
     }
@@ -96,20 +92,11 @@ export default function CheckoutModal({
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/create-order`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          planId,
-          couponCode: couponResult?.code ?? undefined,
-        }),
+      const res = await apiClient.post("/payments/create-order", {
+        planId,
+        couponCode: couponResult?.code ?? undefined,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || data.message || "Failed to create order");
-
-      const od: OrderData = data.data;
-      setOrderData(od);
+      const od: OrderData = res.data.data;
 
       const options = {
         key: od.keyId,
@@ -124,23 +111,16 @@ export default function CheckoutModal({
           razorpay_signature: string;
         }) => {
           try {
-            const verifyRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/verify`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              credentials: "include",
-              body: JSON.stringify({
-                razorpayOrderId: response.razorpay_order_id,
-                razorpayPaymentId: response.razorpay_payment_id,
-                razorpaySignature: response.razorpay_signature,
-                planId,
-                couponCode: couponResult?.code ?? undefined,
-              }),
+            await apiClient.post("/payments/verify", {
+              razorpayOrderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
+              planId,
+              couponCode: couponResult?.code ?? undefined,
             });
-            const verifyData = await verifyRes.json();
-            if (!verifyRes.ok) throw new Error(verifyData.error || verifyData.message || "Payment verification failed");
             onSuccess();
           } catch (e: any) {
-            setError(e.message);
+            setError(e.response?.data?.error || e.message || "Payment verification failed");
           }
         },
         prefill: {},
@@ -151,7 +131,7 @@ export default function CheckoutModal({
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (err: any) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message || "Failed to process payment");
       setLoading(false);
     }
   };
