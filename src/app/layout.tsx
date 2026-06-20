@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 };
 
 import SmoothScroll from "@/components/SmoothScroll";
+import AuthProvider from "@/components/AuthProvider";
 
 export default function RootLayout({
   children,
@@ -34,7 +35,9 @@ export default function RootLayout({
     >
       <body>
         <SmoothScroll>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </SmoothScroll>
       </body>
     </html>

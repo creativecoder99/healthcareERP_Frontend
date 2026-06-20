@@ -32,16 +32,18 @@ export default function PatientLayout({
 
   useEffect(() => {
     setMounted(true);
-    // Check if the user is authenticated and is a Patient
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const token = useAuthStore.getState().accessToken;
     const currentUser = useAuthStore.getState().user;
-    
     if (!token || !currentUser) {
       router.push("/login");
     } else if (currentUser.role !== "PATIENT") {
       router.push("/login");
     }
-  }, [user, router]);
+  }, [mounted, user, router]);
 
   if (!mounted || !user) {
     return (

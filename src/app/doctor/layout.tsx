@@ -26,15 +26,18 @@ export default function DoctorLayout({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const token = useAuthStore.getState().accessToken;
     const currentUser = useAuthStore.getState().user;
-
     if (!token || !currentUser) {
       router.push("/login");
     } else if (currentUser.role !== "DOCTOR") {
       router.push("/login");
     }
-  }, [user, router]);
+  }, [mounted, user, router]);
 
   if (!mounted || !user) {
     return (
