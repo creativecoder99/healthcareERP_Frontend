@@ -12,8 +12,14 @@ import {
   Save,
   X,
   Clock,
+  TrendingUp,
+  TrendingDown,
+  Minus,
+  AlertTriangle,
+  Activity,
 } from "lucide-react";
 import Link from "next/link";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceArea } from "recharts";
 import { apiClient } from "../../../../lib/api-client";
 
 interface Patient {
@@ -65,6 +71,9 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
   const [aiSummary, setAiSummary] = useState<Record<string, any>>({});
   const [aiLoading, setAiLoading] = useState<string | null>(null);
   const [urlLoading, setUrlLoading] = useState<string | null>(null);
+  const [analytics, setAnalytics] = useState<any>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
+  const [selectedParam, setSelectedParam] = useState<string | null>(null);
 
   const fetchAll = async () => {
     try {
@@ -138,6 +147,20 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
     } finally {
       setNoteLoading(false);
     }
+  };
+
+  const loadAnalytics = async () => {
+    if (analytics || analyticsLoading) return;
+    setAnalyticsLoading(true);
+    try {
+      const res = await apiClient.get(`/doctor/patients/${patientId}/analytics`);
+      if (res.data?.success) {
+        setAnalytics(res.data.data);
+        const first = res.data.data.summary?.parameters?.[0]?.parameterKey ?? null;
+        setSelectedParam(first);
+      }
+    } catch { /* ignore */ }
+    finally { setAnalyticsLoading(false); }
   };
 
   const handleUpdateNote = async (noteId: string) => {
@@ -223,14 +246,14 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
       )}
 
       {/* Tab bar */}
-      <div style={{ display: "flex", gap: 2, background: "#f0e8e0", borderRadius: 10, padding: 4, width: "fit-content" }}>
-        {(["records", "notes", "ai"] as const).map((t) => (
+      <div style={{ display: "flex", gap: 2, background: "#f0e8e0", borderRadius: 10, padding: 4, width: "fit-content", flexWrap: "wrap" }}>
+        {(["records", "notes", "ai", "analytics"] as const).map((t) => (
           <button
             key={t}
-            onClick={() => setTab(t)}
+            onClick={() => { setTab(t as any); if (t === "analytics") loadAnalytics(); }}
             style={{ padding: "8px 18px", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.85rem", cursor: "pointer", background: tab === t ? "#fff" : "transparent", color: tab === t ? "#2c2520" : "#a08060", boxShadow: tab === t ? "0 1px 4px rgba(0,0,0,0.08)" : "none", transition: "all 0.15s" }}
           >
-            {t === "records" ? `Records (${totalRecords})` : t === "notes" ? `Notes (${notes.length})` : "AI Summaries"}
+            {t === "records" ? `Records (${totalRecords})` : t === "notes" ? `Notes (${notes.length})` : t === "ai" ? "AI Summaries" : "Analytics"}
           </button>
         ))}
       </div>
@@ -423,6 +446,143 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                 </div>
               ))}
             </div>
+          )}
+        </div>
+      )}
+      {/* Analytics tab */}
+      {tab === ("analytics" as any) && (
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {analyticsLoading ? (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "48px 0" }}>
+              <div style={{ width: 28, height: 28, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+            </div>
+          ) : !analytics ? (
+            <div style={{ textAlign: "center", padding: "48px 0", color: "#a08060", fontSize: "0.88rem" }}>No analytics data available.</div>
+          ) : (
+            <>
+              {/* Health score */}
+              {analytics.healthScore?.score != null && (
+                <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: "18px 22px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+                  <Activity size={20} color="#16a34a" />
+                  <div>
+                    <div style={{ fontSize: "0.73rem", color: "#a08060", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Health Score</div>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 2 }}>
+                      <span style={{ fontSize: "2rem", fontWeight: 800, color: analytics.healthScore.score >= 70 ? "#16a34a" : analytics.healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
+                        {analytics.healthScore.score}
+                      </span>
+                      <span style={{ fontSize: "1rem", fontWeight: 600, color: "#a08060" }}>{analytics.healthScore.grade}</span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "0.8rem", color: "#a08060" }}>
+                    {analytics.healthScore.normalCount} normal · {analytics.healthScore.abnormalCount} flagged · {analytics.healthScore.trend}
+                  </div>
+                </div>
+              )}
+
+              {/* Parameter list + chart */}
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                {/* Parameter list */}
+                <div style={{ width: 210, background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, overflow: "hidden", flexShrink: 0 }}>
+                  <div style={{ padding: "12px 16px", borderBottom: "1px solid #f0e8e0", fontWeight: 700, fontSize: "0.82rem", color: "#2c2520" }}>
+                    Parameters ({analytics.summary?.parameters?.length ?? 0})
+                  </div>
+                  <ul style={{ listStyle: "none", margin: 0, padding: 0, maxHeight: 360, overflowY: "auto" }}>
+                    {(analytics.summary?.parameters ?? []).map((p: any) => (
+                      <li
+                        key={p.parameterKey}
+                        onClick={() => setSelectedParam(p.parameterKey)}
+                        style={{ padding: "10px 14px", cursor: "pointer", borderBottom: "1px solid #fdf8f5", background: selectedParam === p.parameterKey ? "#f0fdf4" : "transparent", borderLeft: selectedParam === p.parameterKey ? "3px solid #16a34a" : "3px solid transparent" }}
+                      >
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#2c2520" }}>{p.parameterLabel}</span>
+                          {p.isAbnormal && <AlertTriangle size={12} color={p.severity === "CRITICAL" ? "#ef4444" : p.severity === "MODERATE" ? "#f97316" : "#eab308"} />}
+                        </div>
+                        <div style={{ fontSize: "0.75rem", fontWeight: 700, color: p.isAbnormal ? "#ef4444" : "#16a34a", marginTop: 2 }}>
+                          {p.latestValue} {p.unit}
+                          <span style={{ color: "#a08060", fontWeight: 400, marginLeft: 4 }}>
+                            {p.trend === "up" ? <TrendingUp size={11} style={{ display: "inline" }} /> : p.trend === "down" ? <TrendingDown size={11} style={{ display: "inline" }} /> : <Minus size={11} style={{ display: "inline" }} />}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Trend chart */}
+                <div style={{ flex: 1, background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, padding: "18px 20px", minWidth: 0 }}>
+                  {!selectedParam ? (
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#a08060", fontSize: "0.88rem" }}>
+                      Select a parameter to view trend
+                    </div>
+                  ) : (() => {
+                    const series = (analytics.trends ?? []).find((s: any) => s.parameterKey === selectedParam);
+                    const param = (analytics.summary?.parameters ?? []).find((p: any) => p.parameterKey === selectedParam);
+                    if (!series || series.data.length === 0) return (
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#a08060", fontSize: "0.88rem" }}>No trend data for {selectedParam}.</div>
+                    );
+                    return (
+                      <>
+                        <div style={{ marginBottom: 12 }}>
+                          <span style={{ fontWeight: 700, fontSize: "1rem", color: "#2c2520" }}>{series.parameterLabel}</span>
+                          <span style={{ color: "#a08060", fontSize: "0.82rem", marginLeft: 6 }}>({series.unit})</span>
+                          {param?.referenceMin != null && param?.referenceMax != null && (
+                            <span style={{ marginLeft: 12, fontSize: "0.75rem", background: "#f0fdf4", color: "#16a34a", padding: "2px 8px", borderRadius: 99, border: "1px solid #bbf7d0" }}>
+                              Ref: {param.referenceMin}–{param.referenceMax}
+                            </span>
+                          )}
+                        </div>
+                        <ResponsiveContainer width="100%" height={260}>
+                          <LineChart data={series.data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#f0e8e0" />
+                            <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#a08060" }} tickLine={false} />
+                            <YAxis tick={{ fontSize: 11, fill: "#a08060" }} tickLine={false} axisLine={false} domain={["auto", "auto"]} />
+                            <Tooltip
+                              contentStyle={{ background: "#1e293b", border: "none", borderRadius: 8, color: "#fff", fontSize: 12 }}
+                              labelStyle={{ color: "#94a3b8", marginBottom: 4 }}
+                            />
+                            {series.referenceMin != null && series.referenceMax != null && (
+                              <ReferenceArea y1={series.referenceMin} y2={series.referenceMax} fill="#16a34a" fillOpacity={0.07} />
+                            )}
+                            <Line type="monotone" dataKey="value" stroke="#16a34a" strokeWidth={2.5} dot={{ r: 4, fill: "#16a34a", stroke: "#fff", strokeWidth: 2 }} activeDot={{ r: 6 }} />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              {/* Abnormal history */}
+              {(analytics.abnormal ?? []).length > 0 && (
+                <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: "18px 22px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
+                    <AlertTriangle size={15} color="#f97316" />
+                    <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "#2c2520" }}>Abnormal History</span>
+                    <span style={{ fontSize: "0.73rem", background: "#fff7ed", color: "#f97316", padding: "1px 8px", borderRadius: 99, border: "1px solid #fed7aa", fontWeight: 600 }}>
+                      {analytics.abnormal.length}
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    {analytics.abnormal.slice(0, 10).map((a: any, i: number) => (
+                      <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 12px", background: "#fafaf9", borderRadius: 8, border: "1px solid #f0e8e0", flexWrap: "wrap", gap: 8 }}>
+                        <div>
+                          <span style={{ fontWeight: 600, fontSize: "0.85rem", color: "#2c2520" }}>{a.parameterLabel}</span>
+                          <span style={{ marginLeft: 8, fontSize: "0.8rem", color: "#a08060" }}>{a.date}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ fontWeight: 700, fontSize: "0.88rem", color: a.severity === "CRITICAL" ? "#ef4444" : a.severity === "MODERATE" ? "#f97316" : "#eab308" }}>
+                            {a.value} {a.unit}
+                          </span>
+                          <span style={{ fontSize: "0.7rem", padding: "1px 7px", borderRadius: 99, fontWeight: 700, background: a.severity === "CRITICAL" ? "#fee2e2" : a.severity === "MODERATE" ? "#fff7ed" : "#fefce8", color: a.severity === "CRITICAL" ? "#ef4444" : a.severity === "MODERATE" ? "#f97316" : "#ca8a04" }}>
+                            {a.severity}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

@@ -13,6 +13,10 @@ import {
   Sparkles,
   ExternalLink,
   Stethoscope,
+  Activity,
+  TrendingUp,
+  TrendingDown,
+  Minus,
 } from "lucide-react";
 import { useAuthStore } from "../../../lib/auth-store";
 import { apiClient } from "../../../lib/api-client";
@@ -25,6 +29,7 @@ export default function PatientDashboard() {
   const [totalRecords, setTotalRecords] = useState<number>(0);
   const [totalSizeMB, setTotalSizeMB] = useState<number>(0);
   const [loading, setLoading] = useState(true);
+  const [healthScore, setHealthScore] = useState<any>(null);
 
   useEffect(() => {
     async function fetchDashboardData() {
@@ -44,6 +49,9 @@ export default function PatientDashboard() {
           const bytes = list.reduce((acc: number, r: any) => acc + r.fileSize, 0);
           setTotalSizeMB(parseFloat((bytes / (1024 * 1024)).toFixed(2)));
         }
+
+        const scoreRes = await apiClient.get("/analytics/health-score");
+        if (scoreRes.data?.success) setHealthScore(scoreRes.data.data);
       } catch {
         // ignore
       } finally {
@@ -247,6 +255,42 @@ export default function PatientDashboard() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Health Score Widget */}
+          <div className={styles.section}>
+            <div className={styles.sectionTitle}>
+              <span>Health Score</span>
+              <Link href="/patient/analytics" className={styles.titleLink}>
+                View Analytics <ArrowRight size={13} />
+              </Link>
+            </div>
+            {healthScore?.score != null ? (
+              <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "16px 20px", background: "#f8fafc", borderRadius: 12, border: "1px solid #e2e8f0" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: "50%", background: healthScore.score >= 85 ? "#dcfce7" : healthScore.score >= 70 ? "#e0e7ff" : healthScore.score >= 50 ? "#fff7ed" : "#fee2e2", flexShrink: 0 }}>
+                  <span style={{ fontSize: "1.4rem", fontWeight: 800, color: healthScore.score >= 85 ? "#16a34a" : healthScore.score >= 70 ? "#6366f1" : healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
+                    {healthScore.score}
+                  </span>
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontWeight: 700, fontSize: "1rem", color: "#0f172a" }}>{healthScore.grade}</span>
+                    <span style={{ display: "flex", alignItems: "center", gap: 3, fontSize: "0.78rem", fontWeight: 600, color: healthScore.trend === "improving" ? "#16a34a" : healthScore.trend === "declining" ? "#ef4444" : "#94a3b8" }}>
+                      {healthScore.trend === "improving" ? <TrendingUp size={13} /> : healthScore.trend === "declining" ? <TrendingDown size={13} /> : <Minus size={13} />}
+                      {healthScore.trend}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: 4 }}>
+                    {healthScore.normalCount} normal · {healthScore.abnormalCount} flagged out of {healthScore.trackedCount} values
+                  </div>
+                </div>
+                <Activity size={18} color="#94a3b8" />
+              </div>
+            ) : (
+              <div style={{ padding: "16px 20px", background: "#f8fafc", borderRadius: 12, border: "1px solid #e2e8f0", fontSize: "0.85rem", color: "#94a3b8", textAlign: "center" }}>
+                Upload reports to see your health score
+              </div>
+            )}
           </div>
 
           {/* AI Brief */}

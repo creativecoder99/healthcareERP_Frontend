@@ -14,6 +14,7 @@ import {
   Activity,
   Stethoscope,
   CreditCard,
+  TrendingUp,
 } from "lucide-react";
 import { useAuthStore } from "../../lib/auth-store";
 import { apiClient } from "../../lib/api-client";
@@ -71,6 +72,7 @@ export default function PatientLayout({
   const navItems = [
     { label: "Dashboard", href: "/patient/dashboard", icon: <LayoutDashboard size={18} /> },
     { label: "Medical Records", href: "/patient/records", icon: <FolderOpen size={18} /> },
+    { label: "Analytics", href: "/patient/analytics", icon: <TrendingUp size={18} /> },
     { label: "My Doctors", href: "/patient/doctors", icon: <Stethoscope size={18} /> },
     { label: "My Profile", href: "/patient/profile", icon: <User size={18} /> },
     { label: "Billing", href: "/patient/settings/billing", icon: <CreditCard size={18} /> },

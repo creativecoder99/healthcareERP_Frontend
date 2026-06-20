@@ -1,0 +1,409 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* ─── Health Score Banner ─────────────────────────────────────────────────── */
+
+.scoreBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.scoreLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6366f1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.scoreIcon {
+  flex-shrink: 0;
+}
+
+.scoreLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.scoreRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scoreBig {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.scoreGrade {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.scoreTrend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.scoreStats {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.scorePlaceholder {
+  font-size: 13px;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* ─── Layout ──────────────────────────────────────────────────────────────── */
+
+.layout {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Parameter Panel ─────────────────────────────────────────────────────── */
+
+.panel {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.panelTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.panelCount {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 20px;
+}
+
+.filterRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: #64748b;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.filterCheck {
+  accent-color: #6366f1;
+}
+
+.panelLoading, .panelEmpty {
+  padding: 24px 16px;
+  font-size: 12px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.paramList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.paramItem {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f8fafc;
+  transition: background 0.1s;
+}
+
+.paramItem:hover {
+  background: #f8fafc;
+}
+
+.paramItemActive {
+  background: #eef2ff;
+  border-left: 3px solid #6366f1;
+}
+
+.paramTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.paramLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.paramBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paramValue {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.paramTrend {
+  color: #94a3b8;
+}
+
+.paramMeta {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+/* ─── Chart Area ──────────────────────────────────────────────────────────── */
+
+.chartArea {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.chartEmpty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #94a3b8;
+  font-size: 14px;
+  text-align: center;
+}
+
+.chartEmptyIcon {
+  color: #e2e8f0;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chartTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.chartUnit {
+  font-size: 13px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.chartSub {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 4px 0 0;
+}
+
+.chartControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dateInput {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #1e293b;
+  outline: none;
+  background: #f8fafc;
+}
+
+.dateInput:focus {
+  border-color: #6366f1;
+  background: #fff;
+}
+
+.dateSep {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.refreshBtn:hover {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+}
+
+.chartLoading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.refBand {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background: #eef2ff;
+  border-radius: 6px;
+}
+
+/* ─── Tooltip ─────────────────────────────────────────────────────────────── */
+
+.tooltip {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.tooltipDate {
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 0 0 4px;
+}
+
+.tooltipValue {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+}
+
+.tooltipUnit {
+  font-size: 12px;
+  font-weight: 400;
+  color: #94a3b8;
+}
+
+.tooltipBadge {
+  font-size: 11px;
+  font-weight: 600;
+  margin: 4px 0 0;
+}
+
+/* ─── Legend ──────────────────────────────────────────────────────────────── */
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendBand {
+  width: 16px;
+  height: 8px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
