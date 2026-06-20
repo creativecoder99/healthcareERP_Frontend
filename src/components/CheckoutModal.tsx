@@ -77,7 +77,7 @@ export default function CheckoutModal({
         body: JSON.stringify({ code: couponInput.trim().toUpperCase(), planId }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Invalid coupon");
+      if (!res.ok) throw new Error(data.error || data.message || "Invalid coupon");
       setCouponResult(data.data);
     } catch (err: any) {
       setCouponError(err.message);
@@ -106,7 +106,7 @@ export default function CheckoutModal({
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Failed to create order");
+      if (!res.ok) throw new Error(data.error || data.message || "Failed to create order");
 
       const od: OrderData = data.data;
       setOrderData(od);
@@ -137,7 +137,7 @@ export default function CheckoutModal({
               }),
             });
             const verifyData = await verifyRes.json();
-            if (!verifyRes.ok) throw new Error(verifyData.message || "Payment verification failed");
+            if (!verifyRes.ok) throw new Error(verifyData.error || verifyData.message || "Payment verification failed");
             onSuccess();
           } catch (e: any) {
             setError(e.message);
@@ -192,7 +192,10 @@ export default function CheckoutModal({
           ) : (
             <div className={styles.couponApplied}>
               <span className={styles.couponTag}>
-                🎉 {couponResult.code} — {couponResult.discountValue}% off
+                🎉 {couponResult.code} —{" "}
+                {couponResult.discountType === "PERCENTAGE"
+                  ? `${couponResult.discountValue}% off`
+                  : `₹${couponResult.discountValue} off`}
               </span>
               <button className={styles.removeCoupon} onClick={removeCoupon}>Remove</button>
             </div>
@@ -211,7 +214,13 @@ export default function CheckoutModal({
           </div>
           {saving > 0 && (
             <div className={`${styles.priceRow} ${styles.discount}`}>
-              <span>Discount ({couponResult?.discountValue}%)</span>
+              <span>
+                Discount (
+                {couponResult?.discountType === "PERCENTAGE"
+                  ? `${couponResult.discountValue}%`
+                  : `₹${couponResult?.discountValue}`}
+                )
+              </span>
               <span>−₹{saving}</span>
             </div>
           )}

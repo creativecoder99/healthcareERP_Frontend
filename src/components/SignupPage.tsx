@@ -598,7 +598,7 @@ function PatientStep2({
             onChange={onChange}
             placeholder="e.g. 165"
             min="50"
-            max="250"
+            max="300"
           />
         </Field>
         <Field label="Weight (kg)" optional>
@@ -1727,14 +1727,20 @@ export default function SignupPage() {
         setScreen("success");
       } catch (err: any) {
         console.error("Signup failed:", err);
-        const errMsg = err.response?.data?.error || err.message || "Something went wrong. Please try again.";
-        setSubmitError(typeof errMsg === "string" ? errMsg : JSON.stringify(errMsg));
-        if (err.response?.data?.details) {
+        const details = err.response?.data?.details;
+        if (details) {
           const serverErrors: Record<string, string> = {};
-          Object.entries(err.response.data.details).forEach(([key, value]: any) => {
-            serverErrors[key] = Array.isArray(value) ? value[0] : value;
+          const messages: string[] = [];
+          Object.entries(details).forEach(([key, value]: any) => {
+            const msg = Array.isArray(value) ? value[0] : value;
+            serverErrors[key] = msg;
+            messages.push(`${key}: ${msg}`);
           });
           setErrors(serverErrors);
+          setSubmitError(`Please fix the following: ${messages.join(", ")}`);
+        } else {
+          const errMsg = err.response?.data?.error || err.message || "Something went wrong. Please try again.";
+          setSubmitError(typeof errMsg === "string" ? errMsg : JSON.stringify(errMsg));
         }
       } finally {
         setLoading(false);
