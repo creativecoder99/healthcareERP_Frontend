@@ -1,0 +1,191 @@
+.section {
+  padding: 72px 0;
+  background: linear-gradient(135deg, #143d22 0%, #225c34 55%, #1a4a2a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle geometric pattern */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(140, 184, 153, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 20%, rgba(197, 155, 39, 0.1) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* Stats Row */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 24px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 768px) {
+  .statsRow {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .statItem:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.statValue {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #c59b27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 8px;
+}
+
+.statSub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 4px;
+}
+
+/* Progress Area */
+.progressArea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: 32px 36px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.progressAreaVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.progressTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.progressTitle strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.progressPercent {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-accent-gold);
+  letter-spacing: -0.02em;
+}
+
+/* Track */
+.trackWrap {
+  margin-bottom: 16px;
+}
+
+.track {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--border-radius-full);
+  background: linear-gradient(90deg, #3b7d4d 0%, #c59b27 60%, #f5c842 100%);
+  box-shadow: 0 0 20px rgba(197, 155, 39, 0.5);
+  transition: width 2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.fillLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #143d22;
+  white-space: nowrap;
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.goalLabel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.goalBadge {
+  background: rgba(197, 155, 39, 0.2);
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  color: #c59b27;
+  padding: 2px 10px;
+  border-radius: var(--border-radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.caption {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  margin-top: 12px;
+}

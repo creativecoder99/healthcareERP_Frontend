@@ -1,0 +1,129 @@
+.leftBar {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.socialText {
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-primary-light);
+  opacity: 0.8;
+  transform: rotate(180deg);
+}
+
+.line {
+  width: 1.5px;
+  height: 60px;
+  background-color: var(--color-primary-light);
+  opacity: 0.4;
+}
+
+.socialLink {
+  color: var(--color-primary-light);
+  opacity: 0.7;
+  transition: var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--color-accent-gold);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.rightBar {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  z-index: 50;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  outline: none;
+  text-decoration: none;
+}
+
+.label {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-light);
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.navItem:hover .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.num {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  min-width: 18px;
+  text-align: right;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.navItemActive .num {
+  color: var(--color-accent-gold);
+  opacity: 1;
+  font-size: 0.95rem;
+}
+
+.navItemActive .dot {
+  background-color: var(--color-accent-gold);
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.navItemActive .label {
+  color: var(--color-accent-gold);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hide on mobile */
+@media (max-width: 1024px) {
+  .leftBar,
+  .rightBar {
+    display: none;
+  }
+}

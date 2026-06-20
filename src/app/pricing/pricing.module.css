@@ -1,0 +1,174 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #eef0fb 0%, #f5f3ff 50%, #ede9fe 100%);
+  padding: 60px 24px 80px;
+}
+
+/* Hero */
+.hero { text-align: center; margin-bottom: 56px; }
+
+.heroBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.heroTitle {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: #0c1033;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.heroSub {
+  font-size: 16px;
+  color: #475569;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Plans Grid */
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  gap: 24px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.planCard {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.planCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(99, 102, 241, 0.1);
+}
+
+.planCardPopular {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.planHeader { margin-bottom: 24px; }
+
+.planName {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
+.planPrice { display: flex; align-items: baseline; gap: 6px; }
+
+.priceAmount {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.pricePer { font-size: 14px; color: #94a3b8; }
+
+.perMonth {
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* Features */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #334155;
+}
+
+.featureIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #6366f1;
+  font-weight: 700;
+}
+
+.featureLocked { color: #94a3b8; }
+.featureLocked .featureIcon { color: #ef4444; }
+
+.featureSoon { color: #94a3b8; font-style: italic; }
+.featureSoon .featureIcon { color: #f59e0b; }
+
+/* CTAs */
+.ctaPrimary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.ctaPrimary:hover { opacity: 0.92; transform: translateY(-1px); }
+
+.ctaSecondary {
+  width: 100%;
+  padding: 14px;
+  background: #f1f5f9;
+  color: #94a3b8;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.couponHint {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 14px;
+  color: #64748b;
+}

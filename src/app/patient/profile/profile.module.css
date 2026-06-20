@@ -1,0 +1,182 @@
+/* ─── Profile Shell ─── */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeUp 0.4s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid rgba(34, 92, 52, 0.06);
+  padding-bottom: 16px;
+}
+
+.profileTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-title);
+  margin: 0;
+}
+
+.profileSubtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── Profile Form Card ─── */
+.formCard {
+  background-color: var(--color-bg-card);
+  border: var(--border-card);
+  border-radius: var(--border-radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 560px) {
+  .formCard {
+    padding: 20px 16px;
+  }
+}
+
+.sectionLabel {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-medium);
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(34, 92, 52, 0.2);
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.colSpan2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 560px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .colSpan2 {
+    grid-column: span 1 !important;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-body);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 10px 13px;
+  border: 1.5px solid rgba(34, 92, 52, 0.16);
+  border-radius: 8px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.925rem;
+  color: var(--color-text-body);
+  background: #fafbfa;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.formSelect {
+  cursor: pointer;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(34, 92, 52, 0.1);
+  background: #fff;
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.formError {
+  font-size: 0.775rem;
+  color: #dc2626;
+  margin-top: 1px;
+}
+
+.formHint {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Footer Controls ─── */
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  border-top: 1px solid rgba(34, 92, 52, 0.06);
+  padding-top: 20px;
+  margin-top: 8px;
+}
+
+/* Notification Banners */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.alertSuccess {
+  background-color: var(--color-primary-pale);
+  color: var(--color-primary-dark);
+  border: 1px solid rgba(34, 92, 52, 0.15);
+}
+
+.alertError {
+  background-color: #fcf2eb;
+  color: #d35400;
+  border: 1px solid rgba(211, 84, 0, 0.15);
+}

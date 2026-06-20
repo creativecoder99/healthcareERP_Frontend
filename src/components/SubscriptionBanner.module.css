@@ -1,0 +1,84 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  border-radius: 16px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
+}
+
+.glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.content { flex: 1; }
+
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cta {
+  flex-shrink: 0;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.cta:hover { background: rgba(255, 255, 255, 0.25); }
+
+/* Compact inline variant */
+.compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0f0ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.lockIcon { font-size: 14px; }
+
+.compactText {
+  font-size: 13px;
+  color: #4338ca;
+}
+
+.compactCta {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6366f1;
+  text-decoration: underline;
+}
+.compactCta:hover { color: #4f46e5; }
