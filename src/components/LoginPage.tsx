@@ -7,7 +7,6 @@ import { Activity, ArrowLeft, ArrowRight, Eye, EyeOff, Lock, Mail, Phone, Key } 
 import styles from "./LoginPage.module.css";
 import { apiClient } from "../lib/api-client";
 import { useAuthStore } from "../lib/auth-store";
-import { sendOtpEmail } from "../lib/emailjs";
 
 type Tab = "password" | "email-otp" | "phone-otp";
 
@@ -103,12 +102,9 @@ export default function LoginPage() {
       const response = await apiClient.post("/auth/otp/request", payload);
       setOtpRequested(true);
       setCooldown(60);
-      setSuccessMsg("OTP sent to your email!");
+      setSuccessMsg("OTP sent successfully!");
 
-      // Send via EmailJS for email-otp tab
-      if (tab === "email-otp" && response.data?.otp) {
-        await sendOtpEmail(email, response.data.otp);
-      } else if (response.data?.otp) {
+      if (response.data?.otp) {
         setDevOtp(response.data.otp);
       }
       setErrors({});

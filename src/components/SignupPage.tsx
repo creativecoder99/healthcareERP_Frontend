@@ -19,7 +19,6 @@ import {
 import styles from "./SignupPage.module.css";
 import { apiClient } from "../lib/api-client";
 import { useAuthStore } from "../lib/auth-store";
-import { sendOtpEmail } from "../lib/emailjs";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1519,8 +1518,7 @@ export default function SignupPage() {
       if (type === "email") {
         setEmailOtpRequested(true);
         if (response.data?.otp) {
-          const name = role === "patient" ? patient.fullName : provider.orgName;
-          await sendOtpEmail(value, response.data.otp, name);
+          setDevEmailOtp(response.data.otp);
         }
       } else {
         setPhoneOtpRequested(true);
