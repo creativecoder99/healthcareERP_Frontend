@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   Activity,
+  Calendar,
 } from "lucide-react";
 import { useAuthStore } from "../../lib/auth-store";
 import { apiClient } from "../../lib/api-client";
@@ -65,6 +66,7 @@ export default function DoctorLayout({ children }: { children: React.ReactNode }
   const navItems = [
     { label: "Dashboard", href: "/doctor/dashboard", icon: <LayoutDashboard size={18} /> },
     { label: "My Patients", href: "/doctor/patients", icon: <Users size={18} /> },
+    { label: "Appointments", href: "/doctor/appointments", icon: <Calendar size={18} /> },
     { label: "My Profile", href: "/doctor/profile", icon: <User size={18} /> },
   ];
 
