@@ -58,11 +58,11 @@ const severityColor = (s: string | null) =>
   s === "CRITICAL" ? "#ef4444" : s === "MODERATE" ? "#f97316" : "#eab308";
 
 const gradeColor = (g: string | null) =>
-  g === "Excellent" ? "#22c55e" : g === "Good" ? "#6366f1" : g === "Fair" ? "#f97316" : "#ef4444";
+  g === "Excellent" ? "#22c55e" : g === "Good" ? "#618764" : g === "Fair" ? "#f97316" : "#ef4444";
 
 const CustomDot = (props: any) => {
   const { cx, cy, payload } = props;
-  if (!payload?.isAbnormal) return <Dot cx={cx} cy={cy} r={4} fill="#6366f1" stroke="#fff" strokeWidth={2} />;
+  if (!payload?.isAbnormal) return <Dot cx={cx} cy={cy} r={4} fill="#618764" stroke="#fff" strokeWidth={2} />;
   return <Dot cx={cx} cy={cy} r={6} fill={severityColor(payload.severity)} stroke="#fff" strokeWidth={2} />;
 };
 
@@ -298,22 +298,22 @@ export default function AnalyticsPage() {
                         <ReferenceArea
                           y1={trendData.referenceMin}
                           y2={trendData.referenceMax}
-                          fill="#6366f1"
+                          fill="#618764"
                           fillOpacity={0.07}
-                          stroke="#6366f1"
+                          stroke="#618764"
                           strokeOpacity={0.2}
                         />
                       )}
                       {trendData.referenceMin != null && (
-                        <ReferenceLine y={trendData.referenceMin} stroke="#6366f1" strokeDasharray="4 2" strokeOpacity={0.4} />
+                        <ReferenceLine y={trendData.referenceMin} stroke="#618764" strokeDasharray="4 2" strokeOpacity={0.4} />
                       )}
                       {trendData.referenceMax != null && (
-                        <ReferenceLine y={trendData.referenceMax} stroke="#6366f1" strokeDasharray="4 2" strokeOpacity={0.4} />
+                        <ReferenceLine y={trendData.referenceMax} stroke="#618764" strokeDasharray="4 2" strokeOpacity={0.4} />
                       )}
                       <Line
                         type="monotone"
                         dataKey="value"
-                        stroke="#6366f1"
+                        stroke="#618764"
                         strokeWidth={2.5}
                         dot={<CustomDot />}
                         activeDot={{ r: 7 }}
@@ -323,7 +323,7 @@ export default function AnalyticsPage() {
 
                   {/* Abnormal Legend */}
                   <div className={styles.legend}>
-                    <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: "#6366f1" }} /> Normal</span>
+                    <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: "#618764" }} /> Normal</span>
                     <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: "#eab308" }} /> Mild</span>
                     <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: "#f97316" }} /> Moderate</span>
                     <span className={styles.legendItem}><span className={styles.legendDot} style={{ background: "#ef4444" }} /> Critical</span>

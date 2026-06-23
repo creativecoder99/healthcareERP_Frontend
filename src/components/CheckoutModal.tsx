@@ -124,7 +124,7 @@ export default function CheckoutModal({
           }
         },
         prefill: {},
-        theme: { color: "#6366f1" },
+        theme: { color: "#618764" },
         modal: { ondismiss: () => setLoading(false) },
       };
 

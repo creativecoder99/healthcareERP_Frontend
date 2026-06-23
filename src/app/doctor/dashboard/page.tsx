@@ -81,7 +81,7 @@ export default function DoctorDashboard() {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "40vh" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 30, height: 30, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <div style={{ width: 30, height: 30, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
           <span style={{ fontSize: "0.85rem", color: "#6b7280" }}>Loading dashboard...</span>
         </div>
@@ -107,7 +107,7 @@ export default function DoctorDashboard() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
       {/* Welcome card */}
-      <div style={{ background: "linear-gradient(135deg, #1a1e1a 0%, #16a34a 100%)", borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden" }}>
+      <div style={{ background: "linear-gradient(135deg, #273338 0%, #618764 100%)", borderRadius: 14, padding: "28px 32px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -30, right: -30, width: 140, height: 140, borderRadius: "50%", background: "rgba(255,255,255,0.04)" }} />
         <h2 style={{ margin: "0 0 6px", fontSize: "1.45rem", fontWeight: 800, color: "#fff" }}>
           {greeting}, Dr. {firstName}!
@@ -120,17 +120,17 @@ export default function DoctorDashboard() {
       {/* Stats row */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 16 }}>
         {[
-          { label: "Linked Patients", val: approved.length, color: "#16a34a", icon: <Users size={20} /> },
+          { label: "Linked Patients", val: approved.length, color: "#618764", icon: <Users size={20} /> },
           { label: "Pending Requests", val: pending.length, color: "#d97706", icon: <Clock size={20} /> },
           { label: "Denied / Revoked", val: denied.length, color: "#6b7280", icon: <XCircle size={20} /> },
         ].map((s) => (
-          <div key={s.label} style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>
+          <div key={s.label} style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 12, padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>
             <div style={{ width: 40, height: 40, borderRadius: 10, background: s.color + "15", display: "flex", alignItems: "center", justifyContent: "center", color: s.color }}>
               {s.icon}
             </div>
             <div>
-              <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "#2c2520", lineHeight: 1 }}>{s.val}</div>
-              <div style={{ fontSize: "0.78rem", color: "#a08060", marginTop: 3 }}>{s.label}</div>
+              <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "#273338", lineHeight: 1 }}>{s.val}</div>
+              <div style={{ fontSize: "0.78rem", color: "#618764", marginTop: 3 }}>{s.label}</div>
             </div>
           </div>
         ))}
@@ -138,57 +138,57 @@ export default function DoctorDashboard() {
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
         {/* Request access form */}
-        <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 26 }}>
+        <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 26 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-            <Stethoscope size={16} color="#16a34a" />
-            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#2c2520" }}>Request Patient Access</h3>
+            <Stethoscope size={16} color="#618764" />
+            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#273338" }}>Request Patient Access</h3>
           </div>
           <form onSubmit={handleRequestAccess} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#fcfaf7", border: "1px solid #e8ddd4", borderRadius: 8, padding: "0 12px" }}>
-              <Mail size={14} color="#a08060" />
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#fafbfa", border: "1px solid #9CB080", borderRadius: 8, padding: "0 12px" }}>
+              <Mail size={14} color="#618764" />
               <input
                 type="email"
                 placeholder="patient@email.com"
                 value={requestEmail}
                 onChange={(e) => setRequestEmail(e.target.value)}
-                style={{ flex: 1, border: "none", background: "transparent", padding: "11px 0", fontSize: "0.88rem", color: "#2c2520", outline: "none" }}
+                style={{ flex: 1, border: "none", background: "transparent", padding: "11px 0", fontSize: "0.88rem", color: "#273338", outline: "none" }}
               />
             </div>
             <button
               type="submit"
               disabled={requestLoading}
-              style={{ padding: "11px", background: "#16a34a", color: "#fff", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.88rem", cursor: "pointer", opacity: requestLoading ? 0.7 : 1 }}
+              style={{ padding: "11px", background: "#618764", color: "#fff", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.88rem", cursor: "pointer", opacity: requestLoading ? 0.7 : 1 }}
             >
               {requestLoading ? "Sending..." : "Send Access Request"}
             </button>
           </form>
           {requestMsg && (
-            <p style={{ marginTop: 10, fontSize: "0.82rem", color: requestMsg.type === "ok" ? "#16a34a" : "#dc2626" }}>
+            <p style={{ marginTop: 10, fontSize: "0.82rem", color: requestMsg.type === "ok" ? "#618764" : "#dc2626" }}>
               {requestMsg.text}
             </p>
           )}
         </div>
 
         {/* Pending requests */}
-        <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 26 }}>
+        <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 26 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Clock size={16} color="#d97706" />
-              <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#2c2520" }}>Pending ({pending.length})</h3>
+              <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#273338" }}>Pending ({pending.length})</h3>
             </div>
           </div>
           {pending.length === 0 ? (
-            <p style={{ fontSize: "0.85rem", color: "#a08060", margin: 0 }}>No pending requests. Send one using the form.</p>
+            <p style={{ fontSize: "0.85rem", color: "#618764", margin: 0 }}>No pending requests. Send one using the form.</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {pending.slice(0, 4).map((link) => (
-                <div key={link.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", background: "#fffbf5", border: "1px solid #fde8c8", borderRadius: 8 }}>
+                <div key={link.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", background: "#eef1ec", border: "1px solid #9CB080", borderRadius: 8 }}>
                   <div style={{ width: 32, height: 32, borderRadius: "50%", background: "linear-gradient(135deg, #d35400, #f39c12)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: "0.85rem", flexShrink: 0 }}>
                     {link.patient.fullName.charAt(0)}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontWeight: 600, color: "#2c2520", fontSize: "0.88rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.fullName}</div>
-                    <div style={{ fontSize: "0.73rem", color: "#a08060" }}>Requested {formatDate(link.requestedAt)}</div>
+                    <div style={{ fontWeight: 600, color: "#273338", fontSize: "0.88rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.fullName}</div>
+                    <div style={{ fontSize: "0.73rem", color: "#618764" }}>Requested {formatDate(link.requestedAt)}</div>
                   </div>
                   <Clock size={14} color="#d97706" />
                 </div>
@@ -199,35 +199,35 @@ export default function DoctorDashboard() {
       </div>
 
       {/* Linked patients preview */}
-      <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 26 }}>
+      <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 26 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <CheckCircle size={16} color="#16a34a" />
-            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#2c2520" }}>Linked Patients</h3>
+            <CheckCircle size={16} color="#618764" />
+            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#273338" }}>Linked Patients</h3>
           </div>
           {approved.length > 0 && (
-            <Link href="/doctor/patients" style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.82rem", color: "#16a34a", textDecoration: "none", fontWeight: 600 }}>
+            <Link href="/doctor/patients" style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.82rem", color: "#618764", textDecoration: "none", fontWeight: 600 }}>
               View All <ArrowRight size={13} />
             </Link>
           )}
         </div>
         {approved.length === 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "24px 0", color: "#a08060" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "24px 0", color: "#618764" }}>
             <Users size={32} color="#e8f5e9" />
             <p style={{ margin: 0, fontSize: "0.88rem" }}>No approved patients yet. Request access above.</p>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
             {approved.slice(0, 6).map((link) => (
-              <Link key={link.id} href={`/doctor/patients/${link.patient.id}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#fcfaf7", border: "1px solid #f0e8e0", borderRadius: 10, textDecoration: "none" }}>
-                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #16a34a, #4ade80)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: "0.9rem", flexShrink: 0 }}>
+              <Link key={link.id} href={`/doctor/patients/${link.patient.id}`} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#fafbfa", border: "1px solid #eef1ec", borderRadius: 10, textDecoration: "none" }}>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #618764, #9CB080)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 700, fontSize: "0.9rem", flexShrink: 0 }}>
                   {link.patient.fullName.charAt(0)}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontWeight: 600, color: "#2c2520", fontSize: "0.88rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.fullName}</div>
-                  <div style={{ fontSize: "0.72rem", color: "#a08060", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.user.email}</div>
+                  <div style={{ fontWeight: 600, color: "#273338", fontSize: "0.88rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.fullName}</div>
+                  <div style={{ fontSize: "0.72rem", color: "#618764", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{link.patient.user.email}</div>
                 </div>
-                <ArrowRight size={13} color="#a08060" />
+                <ArrowRight size={13} color="#618764" />
               </Link>
             ))}
           </div>

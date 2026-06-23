@@ -42,9 +42,9 @@ export default function DoctorLayout({ children }: { children: React.ReactNode }
 
   if (!mounted || !user) {
     return (
-      <div style={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: "center", backgroundColor: "#fcfaf7" }}>
+      <div style={{ display: "flex", width: "100vw", height: "100vh", alignItems: "center", justifyContent: "center", backgroundColor: "#fafbfa" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 40, height: 40, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <div style={{ width: 40, height: 40, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
           <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
           <span style={{ fontSize: "0.9rem", color: "#6b7280", fontWeight: 500 }}>Loading MediCore...</span>
         </div>

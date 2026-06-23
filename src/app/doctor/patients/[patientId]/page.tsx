@@ -183,7 +183,7 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "40vh" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 30, height: 30, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <div style={{ width: 30, height: 30, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
           <span style={{ fontSize: "0.85rem", color: "#6b7280" }}>Loading patient...</span>
         </div>
@@ -193,9 +193,9 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
 
   if (!patient) {
     return (
-      <div style={{ textAlign: "center", padding: "60px 0", color: "#a08060" }}>
+      <div style={{ textAlign: "center", padding: "60px 0", color: "#618764" }}>
         <p>Patient not found or access denied.</p>
-        <Link href="/doctor/patients" style={{ color: "#16a34a", fontWeight: 600 }}>← Back to patients</Link>
+        <Link href="/doctor/patients" style={{ color: "#618764", fontWeight: 600 }}>← Back to patients</Link>
       </div>
     );
   }
@@ -208,18 +208,18 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       {/* Back + header */}
       <div>
-        <Link href="/doctor/patients" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.83rem", color: "#16a34a", textDecoration: "none", fontWeight: 600, marginBottom: 12 }}>
+        <Link href="/doctor/patients" style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: "0.83rem", color: "#618764", textDecoration: "none", fontWeight: 600, marginBottom: 12 }}>
           <ChevronLeft size={15} /> Back to Patients
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg, #16a34a, #4ade80)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: "1.4rem" }}>
+          <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg, #618764, #9CB080)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: "1.4rem" }}>
             {patient.fullName.charAt(0)}
           </div>
           <div>
-            <h2 style={{ margin: 0, fontSize: "1.3rem", fontWeight: 800, color: "#2c2520" }}>{patient.fullName}</h2>
+            <h2 style={{ margin: 0, fontSize: "1.3rem", fontWeight: 800, color: "#273338" }}>{patient.fullName}</h2>
             <div style={{ display: "flex", gap: 10, marginTop: 4, flexWrap: "wrap" }}>
-              {age !== null && <span style={{ fontSize: "0.78rem", color: "#a08060" }}>{age} yrs</span>}
-              {patient.gender && <span style={{ fontSize: "0.78rem", color: "#a08060" }}>· {patient.gender}</span>}
+              {age !== null && <span style={{ fontSize: "0.78rem", color: "#618764" }}>{age} yrs</span>}
+              {patient.gender && <span style={{ fontSize: "0.78rem", color: "#618764" }}>· {patient.gender}</span>}
               {patient.bloodGroup && <span style={{ fontSize: "0.73rem", background: "#fef3c7", color: "#d97706", padding: "1px 8px", borderRadius: 99, fontWeight: 600 }}>{patient.bloodGroup}</span>}
               {patient.allergies.length > 0 && <span style={{ fontSize: "0.73rem", background: "#fee2e2", color: "#dc2626", padding: "1px 8px", borderRadius: 99, fontWeight: 600 }}>Allergies: {patient.allergies.join(", ")}</span>}
             </div>
@@ -231,27 +231,27 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
       {(patient.heightCm || patient.weightKg) && (
         <div style={{ display: "flex", gap: 14 }}>
           {patient.heightCm && (
-            <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 10, padding: "12px 18px" }}>
-              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#2c2520" }}>{patient.heightCm} cm</div>
-              <div style={{ fontSize: "0.73rem", color: "#a08060" }}>Height</div>
+            <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 10, padding: "12px 18px" }}>
+              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#273338" }}>{patient.heightCm} cm</div>
+              <div style={{ fontSize: "0.73rem", color: "#618764" }}>Height</div>
             </div>
           )}
           {patient.weightKg && (
-            <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 10, padding: "12px 18px" }}>
-              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#2c2520" }}>{patient.weightKg} kg</div>
-              <div style={{ fontSize: "0.73rem", color: "#a08060" }}>Weight</div>
+            <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 10, padding: "12px 18px" }}>
+              <div style={{ fontSize: "1.1rem", fontWeight: 800, color: "#273338" }}>{patient.weightKg} kg</div>
+              <div style={{ fontSize: "0.73rem", color: "#618764" }}>Weight</div>
             </div>
           )}
         </div>
       )}
 
       {/* Tab bar */}
-      <div style={{ display: "flex", gap: 2, background: "#f0e8e0", borderRadius: 10, padding: 4, width: "fit-content", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 2, background: "#eef1ec", borderRadius: 10, padding: 4, width: "fit-content", flexWrap: "wrap" }}>
         {(["records", "notes", "ai", "analytics"] as const).map((t) => (
           <button
             key={t}
             onClick={() => { setTab(t as any); if (t === "analytics") loadAnalytics(); }}
-            style={{ padding: "8px 18px", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.85rem", cursor: "pointer", background: tab === t ? "#fff" : "transparent", color: tab === t ? "#2c2520" : "#a08060", boxShadow: tab === t ? "0 1px 4px rgba(0,0,0,0.08)" : "none", transition: "all 0.15s" }}
+            style={{ padding: "8px 18px", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.85rem", cursor: "pointer", background: tab === t ? "#fff" : "transparent", color: tab === t ? "#273338" : "#618764", boxShadow: tab === t ? "0 1px 4px rgba(0,0,0,0.08)" : "none", transition: "all 0.15s" }}
           >
             {t === "records" ? `Records (${totalRecords})` : t === "notes" ? `Notes (${notes.length})` : t === "ai" ? "AI Summaries" : "Analytics"}
           </button>
@@ -260,32 +260,32 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
 
       {/* Records tab */}
       {tab === "records" && (
-        <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 24 }}>
+        <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 24 }}>
           {/* Type filter */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
             {RECORD_TABS.map((t) => (
               <button
                 key={t}
                 onClick={() => setRecordTypeFilter(t)}
-                style={{ padding: "5px 14px", border: "1px solid", borderRadius: 99, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer", background: recordTypeFilter === t ? "#16a34a" : "#fff", color: recordTypeFilter === t ? "#fff" : "#a08060", borderColor: recordTypeFilter === t ? "#16a34a" : "#e8ddd4" }}
+                style={{ padding: "5px 14px", border: "1px solid", borderRadius: 99, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer", background: recordTypeFilter === t ? "#618764" : "#fff", color: recordTypeFilter === t ? "#fff" : "#618764", borderColor: recordTypeFilter === t ? "#618764" : "#9CB080" }}
               >
                 {t === "All" ? "All" : t.replace("_", " ")}
               </button>
             ))}
           </div>
           {filteredRecords.length === 0 ? (
-            <p style={{ fontSize: "0.88rem", color: "#a08060", textAlign: "center", padding: "32px 0" }}>No records in this category.</p>
+            <p style={{ fontSize: "0.88rem", color: "#618764", textAlign: "center", padding: "32px 0" }}>No records in this category.</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {filteredRecords.map((rec) => (
-                <div key={rec.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 16px", background: "#fcfaf7", border: "1px solid #f0e8e0", borderRadius: 10, flexWrap: "wrap", gap: 12 }}>
+                <div key={rec.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 16px", background: "#fafbfa", border: "1px solid #eef1ec", borderRadius: 10, flexWrap: "wrap", gap: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <div style={{ width: 36, height: 36, borderRadius: 8, background: "#e8f5e9", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <FileText size={17} color="#16a34a" />
+                      <FileText size={17} color="#618764" />
                     </div>
                     <div>
-                      <div style={{ fontWeight: 600, color: "#2c2520", fontSize: "0.9rem" }}>{rec.fileName}</div>
-                      <div style={{ fontSize: "0.73rem", color: "#a08060", display: "flex", gap: 8, marginTop: 2 }}>
+                      <div style={{ fontWeight: 600, color: "#273338", fontSize: "0.9rem" }}>{rec.fileName}</div>
+                      <div style={{ fontSize: "0.73rem", color: "#618764", display: "flex", gap: 8, marginTop: 2 }}>
                         <span>{formatDate(rec.recordDate)}</span>
                         <span>·</span>
                         <span>{formatSize(rec.fileSize)}</span>
@@ -298,14 +298,14 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                     <button
                       onClick={() => handleAISummary(rec.id)}
                       disabled={aiLoading === rec.id}
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 13px", background: "#f0fdf4", color: "#16a34a", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 13px", background: "#f0fdf4", color: "#618764", border: "1px solid #bbf7d0", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
                     >
                       <Sparkles size={12} /> AI Summary
                     </button>
                     <button
                       onClick={() => handleDownload(rec.id)}
                       disabled={urlLoading === rec.id}
-                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 13px", background: "#fff", color: "#5c534c", border: "1px solid #e8ddd4", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
+                      style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 13px", background: "#fff", color: "#5c534c", border: "1px solid #9CB080", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
                     >
                       <Download size={12} /> {urlLoading === rec.id ? "..." : "View"}
                     </button>
@@ -321,22 +321,22 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
       {tab === "notes" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {/* Add note */}
-          <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 22 }}>
+          <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 22 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-              <NotebookPen size={15} color="#16a34a" />
-              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "0.9rem", color: "#2c2520" }}>Add Clinical Note</h4>
+              <NotebookPen size={15} color="#618764" />
+              <h4 style={{ margin: 0, fontWeight: 700, fontSize: "0.9rem", color: "#273338" }}>Add Clinical Note</h4>
             </div>
             <textarea
               value={noteContent}
               onChange={(e) => setNoteContent(e.target.value)}
               placeholder="Enter clinical observations, diagnosis notes, or treatment plans…"
               rows={4}
-              style={{ width: "100%", border: "1px solid #e8ddd4", borderRadius: 8, padding: "12px", fontSize: "0.88rem", color: "#2c2520", background: "#fcfaf7", resize: "vertical", outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
+              style={{ width: "100%", border: "1px solid #9CB080", borderRadius: 8, padding: "12px", fontSize: "0.88rem", color: "#273338", background: "#fafbfa", resize: "vertical", outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
             />
             <button
               onClick={handleAddNote}
               disabled={noteLoading || !noteContent.trim()}
-              style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, padding: "9px 18px", background: "#16a34a", color: "#fff", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.86rem", cursor: "pointer", opacity: noteLoading || !noteContent.trim() ? 0.6 : 1 }}
+              style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, padding: "9px 18px", background: "#618764", color: "#fff", border: "none", borderRadius: 8, fontWeight: 600, fontSize: "0.86rem", cursor: "pointer", opacity: noteLoading || !noteContent.trim() ? 0.6 : 1 }}
             >
               <Plus size={14} /> {noteLoading ? "Saving..." : "Save Note"}
             </button>
@@ -344,20 +344,20 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
 
           {/* Notes list */}
           {notes.length === 0 ? (
-            <p style={{ textAlign: "center", color: "#a08060", padding: "28px 0", fontSize: "0.88rem" }}>No notes yet. Add one above.</p>
+            <p style={{ textAlign: "center", color: "#618764", padding: "28px 0", fontSize: "0.88rem" }}>No notes yet. Add one above.</p>
           ) : (
             notes.map((note) => (
-              <div key={note.id} style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, padding: "18px 20px" }}>
+              <div key={note.id} style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 12, padding: "18px 20px" }}>
                 {editingNoteId === note.id ? (
                   <>
                     <textarea
                       value={editContent}
                       onChange={(e) => setEditContent(e.target.value)}
                       rows={4}
-                      style={{ width: "100%", border: "1px solid #e8ddd4", borderRadius: 8, padding: "10px", fontSize: "0.88rem", color: "#2c2520", background: "#fcfaf7", resize: "vertical", outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
+                      style={{ width: "100%", border: "1px solid #9CB080", borderRadius: 8, padding: "10px", fontSize: "0.88rem", color: "#273338", background: "#fafbfa", resize: "vertical", outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
                     />
                     <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
-                      <button onClick={() => handleUpdateNote(note.id)} style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", background: "#16a34a", color: "#fff", border: "none", borderRadius: 7, fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}>
+                      <button onClick={() => handleUpdateNote(note.id)} style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", background: "#618764", color: "#fff", border: "none", borderRadius: 7, fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}>
                         <Save size={13} /> Save
                       </button>
                       <button onClick={() => setEditingNoteId(null)} style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", background: "#fff", color: "#6b7280", border: "1px solid #e5e7eb", borderRadius: 7, fontWeight: 600, fontSize: "0.82rem", cursor: "pointer" }}>
@@ -367,16 +367,16 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                   </>
                 ) : (
                   <>
-                    <p style={{ margin: "0 0 12px", fontSize: "0.9rem", color: "#2c2520", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{note.content}</p>
+                    <p style={{ margin: "0 0 12px", fontSize: "0.9rem", color: "#273338", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{note.content}</p>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.73rem", color: "#a08060" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: "0.73rem", color: "#618764" }}>
                         <Clock size={11} />
                         <span>{formatDate(note.createdAt)}</span>
                         {note.updatedAt !== note.createdAt && <span>· edited</span>}
                       </div>
                       <button
                         onClick={() => { setEditingNoteId(note.id); setEditContent(note.content); }}
-                        style={{ display: "flex", alignItems: "center", gap: 4, padding: "5px 12px", background: "#fff", color: "#5c534c", border: "1px solid #e8ddd4", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
+                        style={{ display: "flex", alignItems: "center", gap: 4, padding: "5px 12px", background: "#fff", color: "#5c534c", border: "1px solid #9CB080", borderRadius: 7, fontSize: "0.78rem", fontWeight: 600, cursor: "pointer" }}
                       >
                         <Edit2 size={12} /> Edit
                       </button>
@@ -391,21 +391,21 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
 
       {/* AI Summaries tab */}
       {tab === "ai" && (
-        <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: 24 }}>
+        <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: 24 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18 }}>
             <Sparkles size={16} color="#7c3aed" />
-            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#2c2520" }}>AI Summaries</h3>
+            <h3 style={{ margin: 0, fontWeight: 700, fontSize: "0.95rem", color: "#273338" }}>AI Summaries</h3>
           </div>
           {records.length === 0 ? (
-            <p style={{ color: "#a08060", fontSize: "0.88rem" }}>No records available for AI analysis.</p>
+            <p style={{ color: "#618764", fontSize: "0.88rem" }}>No records available for AI analysis.</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {records.map((rec) => (
-                <div key={rec.id} style={{ border: "1px solid #f0e8e0", borderRadius: 10, overflow: "hidden" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "#fcfaf7", flexWrap: "wrap", gap: 10 }}>
+                <div key={rec.id} style={{ border: "1px solid #eef1ec", borderRadius: 10, overflow: "hidden" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "#fafbfa", flexWrap: "wrap", gap: 10 }}>
                     <div>
-                      <span style={{ fontWeight: 600, color: "#2c2520", fontSize: "0.88rem" }}>{rec.fileName}</span>
-                      <span style={{ marginLeft: 8, fontSize: "0.73rem", color: "#a08060" }}>{formatDate(rec.recordDate)}</span>
+                      <span style={{ fontWeight: 600, color: "#273338", fontSize: "0.88rem" }}>{rec.fileName}</span>
+                      <span style={{ marginLeft: 8, fontSize: "0.73rem", color: "#618764" }}>{formatDate(rec.recordDate)}</span>
                     </div>
                     {!aiSummary[rec.id] && (
                       <button
@@ -420,25 +420,25 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                   {aiSummary[rec.id] && (
                     <div style={{ padding: "14px 16px" }}>
                       {aiSummary[rec.id].summaryText && (
-                        <p style={{ margin: "0 0 10px", fontSize: "0.88rem", color: "#2c2520", lineHeight: 1.6 }}>{aiSummary[rec.id].summaryText}</p>
+                        <p style={{ margin: "0 0 10px", fontSize: "0.88rem", color: "#273338", lineHeight: 1.6 }}>{aiSummary[rec.id].summaryText}</p>
                       )}
                       {aiSummary[rec.id].clinicalSummary && (
-                        <div style={{ marginTop: 8, padding: "10px 14px", background: "#f5f3ff", borderRadius: 8 }}>
+                        <div style={{ marginTop: 8, padding: "10px 14px", background: "#fafbfa", borderRadius: 8 }}>
                           <div style={{ fontSize: "0.73rem", fontWeight: 700, color: "#7c3aed", marginBottom: 4 }}>CLINICAL SUMMARY</div>
-                          <p style={{ margin: 0, fontSize: "0.85rem", color: "#2c2520" }}>{aiSummary[rec.id].clinicalSummary}</p>
+                          <p style={{ margin: 0, fontSize: "0.85rem", color: "#273338" }}>{aiSummary[rec.id].clinicalSummary}</p>
                         </div>
                       )}
                       {aiSummary[rec.id].extractedValues?.length > 0 && (
                         <div style={{ marginTop: 10, display: "flex", flexWrap: "wrap", gap: 8 }}>
                           {aiSummary[rec.id].extractedValues.map((v: any) => (
                             <div key={v.id} style={{ padding: "4px 12px", background: v.flagged ? "#fee2e2" : "#f0fdf4", border: `1px solid ${v.flagged ? "#fca5a5" : "#bbf7d0"}`, borderRadius: 99, fontSize: "0.75rem" }}>
-                              <span style={{ fontWeight: 600, color: "#2c2520" }}>{v.parameterKey}:</span>{" "}
-                              <span style={{ color: v.flagged ? "#dc2626" : "#16a34a" }}>{v.value} {v.unit}</span>
+                              <span style={{ fontWeight: 600, color: "#273338" }}>{v.parameterKey}:</span>{" "}
+                              <span style={{ color: v.flagged ? "#dc2626" : "#618764" }}>{v.value} {v.unit}</span>
                             </div>
                           ))}
                         </div>
                       )}
-                      <div style={{ marginTop: 8, fontSize: "0.72rem", color: "#a08060" }}>
+                      <div style={{ marginTop: 8, fontSize: "0.72rem", color: "#618764" }}>
                         Confidence: {(aiSummary[rec.id].confidence * 100).toFixed(0)}%
                       </div>
                     </div>
@@ -454,26 +454,26 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {analyticsLoading ? (
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "48px 0" }}>
-              <div style={{ width: 28, height: 28, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+              <div style={{ width: 28, height: 28, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
             </div>
           ) : !analytics ? (
-            <div style={{ textAlign: "center", padding: "48px 0", color: "#a08060", fontSize: "0.88rem" }}>No analytics data available.</div>
+            <div style={{ textAlign: "center", padding: "48px 0", color: "#618764", fontSize: "0.88rem" }}>No analytics data available.</div>
           ) : (
             <>
               {/* Health score */}
               {analytics.healthScore?.score != null && (
-                <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: "18px 22px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-                  <Activity size={20} color="#16a34a" />
+                <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: "18px 22px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+                  <Activity size={20} color="#618764" />
                   <div>
-                    <div style={{ fontSize: "0.73rem", color: "#a08060", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Health Score</div>
+                    <div style={{ fontSize: "0.73rem", color: "#618764", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>Health Score</div>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 2 }}>
-                      <span style={{ fontSize: "2rem", fontWeight: 800, color: analytics.healthScore.score >= 70 ? "#16a34a" : analytics.healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
+                      <span style={{ fontSize: "2rem", fontWeight: 800, color: analytics.healthScore.score >= 70 ? "#618764" : analytics.healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
                         {analytics.healthScore.score}
                       </span>
-                      <span style={{ fontSize: "1rem", fontWeight: 600, color: "#a08060" }}>{analytics.healthScore.grade}</span>
+                      <span style={{ fontSize: "1rem", fontWeight: 600, color: "#618764" }}>{analytics.healthScore.grade}</span>
                     </div>
                   </div>
-                  <div style={{ fontSize: "0.8rem", color: "#a08060" }}>
+                  <div style={{ fontSize: "0.8rem", color: "#618764" }}>
                     {analytics.healthScore.normalCount} normal · {analytics.healthScore.abnormalCount} flagged · {analytics.healthScore.trend}
                   </div>
                 </div>
@@ -482,8 +482,8 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
               {/* Parameter list + chart */}
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 {/* Parameter list */}
-                <div style={{ width: 210, background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, overflow: "hidden", flexShrink: 0 }}>
-                  <div style={{ padding: "12px 16px", borderBottom: "1px solid #f0e8e0", fontWeight: 700, fontSize: "0.82rem", color: "#2c2520" }}>
+                <div style={{ width: 210, background: "#fff", border: "1px solid #eef1ec", borderRadius: 12, overflow: "hidden", flexShrink: 0 }}>
+                  <div style={{ padding: "12px 16px", borderBottom: "1px solid #eef1ec", fontWeight: 700, fontSize: "0.82rem", color: "#273338" }}>
                     Parameters ({analytics.summary?.parameters?.length ?? 0})
                   </div>
                   <ul style={{ listStyle: "none", margin: 0, padding: 0, maxHeight: 360, overflowY: "auto" }}>
@@ -491,15 +491,15 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                       <li
                         key={p.parameterKey}
                         onClick={() => setSelectedParam(p.parameterKey)}
-                        style={{ padding: "10px 14px", cursor: "pointer", borderBottom: "1px solid #fdf8f5", background: selectedParam === p.parameterKey ? "#f0fdf4" : "transparent", borderLeft: selectedParam === p.parameterKey ? "3px solid #16a34a" : "3px solid transparent" }}
+                        style={{ padding: "10px 14px", cursor: "pointer", borderBottom: "1px solid #fdf8f5", background: selectedParam === p.parameterKey ? "#f0fdf4" : "transparent", borderLeft: selectedParam === p.parameterKey ? "3px solid #618764" : "3px solid transparent" }}
                       >
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#2c2520" }}>{p.parameterLabel}</span>
+                          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#273338" }}>{p.parameterLabel}</span>
                           {p.isAbnormal && <AlertTriangle size={12} color={p.severity === "CRITICAL" ? "#ef4444" : p.severity === "MODERATE" ? "#f97316" : "#eab308"} />}
                         </div>
-                        <div style={{ fontSize: "0.75rem", fontWeight: 700, color: p.isAbnormal ? "#ef4444" : "#16a34a", marginTop: 2 }}>
+                        <div style={{ fontSize: "0.75rem", fontWeight: 700, color: p.isAbnormal ? "#ef4444" : "#618764", marginTop: 2 }}>
                           {p.latestValue} {p.unit}
-                          <span style={{ color: "#a08060", fontWeight: 400, marginLeft: 4 }}>
+                          <span style={{ color: "#618764", fontWeight: 400, marginLeft: 4 }}>
                             {p.trend === "up" ? <TrendingUp size={11} style={{ display: "inline" }} /> : p.trend === "down" ? <TrendingDown size={11} style={{ display: "inline" }} /> : <Minus size={11} style={{ display: "inline" }} />}
                           </span>
                         </div>
@@ -509,41 +509,41 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Trend chart */}
-                <div style={{ flex: 1, background: "#fff", border: "1px solid #f0e8e0", borderRadius: 12, padding: "18px 20px", minWidth: 0 }}>
+                <div style={{ flex: 1, background: "#fff", border: "1px solid #eef1ec", borderRadius: 12, padding: "18px 20px", minWidth: 0 }}>
                   {!selectedParam ? (
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#a08060", fontSize: "0.88rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#618764", fontSize: "0.88rem" }}>
                       Select a parameter to view trend
                     </div>
                   ) : (() => {
                     const series = (analytics.trends ?? []).find((s: any) => s.parameterKey === selectedParam);
                     const param = (analytics.summary?.parameters ?? []).find((p: any) => p.parameterKey === selectedParam);
                     if (!series || series.data.length === 0) return (
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#a08060", fontSize: "0.88rem" }}>No trend data for {selectedParam}.</div>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 280, color: "#618764", fontSize: "0.88rem" }}>No trend data for {selectedParam}.</div>
                     );
                     return (
                       <>
                         <div style={{ marginBottom: 12 }}>
-                          <span style={{ fontWeight: 700, fontSize: "1rem", color: "#2c2520" }}>{series.parameterLabel}</span>
-                          <span style={{ color: "#a08060", fontSize: "0.82rem", marginLeft: 6 }}>({series.unit})</span>
+                          <span style={{ fontWeight: 700, fontSize: "1rem", color: "#273338" }}>{series.parameterLabel}</span>
+                          <span style={{ color: "#618764", fontSize: "0.82rem", marginLeft: 6 }}>({series.unit})</span>
                           {param?.referenceMin != null && param?.referenceMax != null && (
-                            <span style={{ marginLeft: 12, fontSize: "0.75rem", background: "#f0fdf4", color: "#16a34a", padding: "2px 8px", borderRadius: 99, border: "1px solid #bbf7d0" }}>
+                            <span style={{ marginLeft: 12, fontSize: "0.75rem", background: "#f0fdf4", color: "#618764", padding: "2px 8px", borderRadius: 99, border: "1px solid #bbf7d0" }}>
                               Ref: {param.referenceMin}–{param.referenceMax}
                             </span>
                           )}
                         </div>
                         <ResponsiveContainer width="100%" height={260}>
                           <LineChart data={series.data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#f0e8e0" />
-                            <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#a08060" }} tickLine={false} />
-                            <YAxis tick={{ fontSize: 11, fill: "#a08060" }} tickLine={false} axisLine={false} domain={["auto", "auto"]} />
+                            <CartesianGrid strokeDasharray="3 3" stroke="#eef1ec" />
+                            <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#618764" }} tickLine={false} />
+                            <YAxis tick={{ fontSize: 11, fill: "#618764" }} tickLine={false} axisLine={false} domain={["auto", "auto"]} />
                             <Tooltip
                               contentStyle={{ background: "#1e293b", border: "none", borderRadius: 8, color: "#fff", fontSize: 12 }}
                               labelStyle={{ color: "#94a3b8", marginBottom: 4 }}
                             />
                             {series.referenceMin != null && series.referenceMax != null && (
-                              <ReferenceArea y1={series.referenceMin} y2={series.referenceMax} fill="#16a34a" fillOpacity={0.07} />
+                              <ReferenceArea y1={series.referenceMin} y2={series.referenceMax} fill="#618764" fillOpacity={0.07} />
                             )}
-                            <Line type="monotone" dataKey="value" stroke="#16a34a" strokeWidth={2.5} dot={{ r: 4, fill: "#16a34a", stroke: "#fff", strokeWidth: 2 }} activeDot={{ r: 6 }} />
+                            <Line type="monotone" dataKey="value" stroke="#618764" strokeWidth={2.5} dot={{ r: 4, fill: "#618764", stroke: "#fff", strokeWidth: 2 }} activeDot={{ r: 6 }} />
                           </LineChart>
                         </ResponsiveContainer>
                       </>
@@ -554,20 +554,20 @@ export default function DoctorPatientDetailPage({ params }: { params: Promise<{ 
 
               {/* Abnormal history */}
               {(analytics.abnormal ?? []).length > 0 && (
-                <div style={{ background: "#fff", border: "1px solid #f0e8e0", borderRadius: 14, padding: "18px 22px" }}>
+                <div style={{ background: "#fff", border: "1px solid #eef1ec", borderRadius: 14, padding: "18px 22px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
                     <AlertTriangle size={15} color="#f97316" />
-                    <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "#2c2520" }}>Abnormal History</span>
+                    <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "#273338" }}>Abnormal History</span>
                     <span style={{ fontSize: "0.73rem", background: "#fff7ed", color: "#f97316", padding: "1px 8px", borderRadius: 99, border: "1px solid #fed7aa", fontWeight: 600 }}>
                       {analytics.abnormal.length}
                     </span>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                     {analytics.abnormal.slice(0, 10).map((a: any, i: number) => (
-                      <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 12px", background: "#fafaf9", borderRadius: 8, border: "1px solid #f0e8e0", flexWrap: "wrap", gap: 8 }}>
+                      <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 12px", background: "#fafaf9", borderRadius: 8, border: "1px solid #eef1ec", flexWrap: "wrap", gap: 8 }}>
                         <div>
-                          <span style={{ fontWeight: 600, fontSize: "0.85rem", color: "#2c2520" }}>{a.parameterLabel}</span>
-                          <span style={{ marginLeft: 8, fontSize: "0.8rem", color: "#a08060" }}>{a.date}</span>
+                          <span style={{ fontWeight: 600, fontSize: "0.85rem", color: "#273338" }}>{a.parameterLabel}</span>
+                          <span style={{ marginLeft: 8, fontSize: "0.8rem", color: "#618764" }}>{a.date}</span>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                           <span style={{ fontWeight: 700, fontSize: "0.88rem", color: a.severity === "CRITICAL" ? "#ef4444" : a.severity === "MODERATE" ? "#f97316" : "#eab308" }}>

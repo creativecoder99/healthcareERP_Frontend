@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #6366f1;
+  color: #618764;
   font-weight: 600;
   font-size: 14px;
 }
@@ -133,7 +133,7 @@
 }
 
 .filterCheck {
-  accent-color: #6366f1;
+  accent-color: #618764;
 }
 
 .panelLoading, .panelEmpty {
@@ -164,7 +164,7 @@
 
 .paramItemActive {
   background: #eef2ff;
-  border-left: 3px solid #6366f1;
+  border-left: 3px solid #618764;
 }
 
 .paramTop {
@@ -282,7 +282,7 @@
 }
 
 .dateInput:focus {
-  border-color: #6366f1;
+  border-color: #618764;
   background: #fff;
 }
 
@@ -306,9 +306,9 @@
 }
 
 .refreshBtn:hover {
-  background: #6366f1;
+  background: #618764;
   color: #fff;
-  border-color: #6366f1;
+  border-color: #618764;
 }
 
 .chartLoading {
@@ -322,7 +322,7 @@
   width: 32px;
   height: 32px;
   border: 3px solid #e2e8f0;
-  border-top-color: #6366f1;
+  border-top-color: #618764;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -402,8 +402,8 @@
 .legendBand {
   width: 16px;
   height: 8px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(97, 135, 100, 0.15);
+  border: 1px solid rgba(97, 135, 100, 0.3);
   border-radius: 2px;
   flex-shrink: 0;
 }

@@ -207,7 +207,7 @@ export default function DoctorAppointmentsPage() {
     return (
       <div style={{ display: "flex", width: "100%", height: "50vh", alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 32, height: 32, border: "3px solid #dcfce7", borderTop: "3px solid #16a34a", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <div style={{ width: 32, height: 32, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
           <span style={{ fontSize: "0.85rem", color: "#6b7280", fontWeight: 500 }}>Loading scheduling client…</span>
         </div>
       </div>
@@ -255,7 +255,7 @@ export default function DoctorAppointmentsPage() {
                         value={slot.startTime}
                         onChange={(e) => handleSlotChange(slot.dayOfWeek, "startTime", e.target.value)}
                       />
-                      <span style={{ color: "#a08060", fontSize: "0.85rem" }}>to</span>
+                      <span style={{ color: "#618764", fontSize: "0.85rem" }}>to</span>
                       <input
                         type="text"
                         placeholder="17:00"
@@ -295,7 +295,7 @@ export default function DoctorAppointmentsPage() {
           {/* Upcoming */}
           <div className={styles.card}>
             <div className={styles.cardHeader}>
-              <div className={styles.iconWrapper} style={{ background: "#16a34a" }}>
+              <div className={styles.iconWrapper} style={{ background: "#618764" }}>
                 <Video size={18} />
               </div>
               <div>
@@ -325,7 +325,7 @@ export default function DoctorAppointmentsPage() {
                             Blood Group: {appt.patient.bloodGroup || "Not set"}
                           </p>
                           {appt.notes && (
-                            <p style={{ margin: "4px 0 0", fontSize: "0.75rem", color: "#a08060", fontStyle: "italic" }}>
+                            <p style={{ margin: "4px 0 0", fontSize: "0.75rem", color: "#618764", fontStyle: "italic" }}>
                               "{appt.notes}"
                             </p>
                           )}
@@ -450,7 +450,7 @@ export default function DoctorAppointmentsPage() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h4 className={styles.modalTitle}>Cancel Consultation</h4>
-            <p style={{ margin: 0, fontSize: "0.85rem", color: "#a08060" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", color: "#618764" }}>
               Are you sure you want to cancel the consultation with <strong>{cancellingAppt.patient.fullName}</strong> on {formatDate(cancellingAppt.scheduledAt)}?
             </p>
             <div className={styles.formGroup}>

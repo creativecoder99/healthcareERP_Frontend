@@ -29,7 +29,7 @@
   font-family: var(--font-outfit), sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1e2a4a;
+  color: #273338;
   margin: 0;
 }
 
@@ -98,7 +98,7 @@
 .formLabel {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #1e2a4a;
+  color: #273338;
 }
 
 .formInput,
@@ -110,7 +110,7 @@
   border-radius: 8px;
   font-family: var(--font-inter), sans-serif;
   font-size: 0.925rem;
-  color: #1e2a4a;
+  color: #273338;
   background: #fafbfa;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
   outline: none;

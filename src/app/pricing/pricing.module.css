@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: linear-gradient(160deg, #eef0fb 0%, #f5f3ff 50%, #ede9fe 100%);
+  background: linear-gradient(160deg, #eef1ec 0%, #fafbfa 50%, #eef1ec 100%);
   padding: 60px 24px 80px;
 }
 
@@ -9,7 +9,7 @@
 
 .heroBadge {
   display: inline-block;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #618764, #2B5748);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -55,12 +55,12 @@
 }
 .planCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 16px 40px rgba(97, 135, 100, 0.1);
 }
 
 .planCardPopular {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+  border-color: #618764;
+  box-shadow: 0 0 0 3px rgba(97, 135, 100, 0.12);
 }
 
 .popularBadge {
@@ -68,7 +68,7 @@
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #618764, #2B5748);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -129,7 +129,7 @@
   font-size: 14px;
   flex-shrink: 0;
   margin-top: 1px;
-  color: #6366f1;
+  color: #618764;
   font-weight: 700;
 }
 
@@ -143,7 +143,7 @@
 .ctaPrimary {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #618764, #2B5748);
   color: #fff;
   border: none;
   border-radius: 12px;

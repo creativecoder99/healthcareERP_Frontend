@@ -246,8 +246,8 @@ export default function PatientAppointmentsPage() {
     return (
       <div style={{ display: "flex", width: "100%", height: "50vh", alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 32, height: 32, border: "3px solid #e0e7ff", borderTop: "3px solid #d35400", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
-          <span style={{ fontSize: "0.85rem", color: "#a08060", fontWeight: 500 }}>Loading scheduling client…</span>
+          <div style={{ width: 32, height: 32, border: "3px solid #eef1ec", borderTop: "3px solid #d35400", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <span style={{ fontSize: "0.85rem", color: "#618764", fontWeight: 500 }}>Loading scheduling client…</span>
         </div>
       </div>
     );
@@ -312,7 +312,7 @@ export default function PatientAppointmentsPage() {
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Available Slots</label>
                   {activeSlots.length === 0 ? (
-                    <div style={{ fontSize: "0.85rem", color: "#a08060", padding: "10px 0" }}>
+                    <div style={{ fontSize: "0.85rem", color: "#618764", padding: "10px 0" }}>
                       No available booking slots on this date.
                     </div>
                   ) : (
@@ -510,7 +510,7 @@ export default function PatientAppointmentsPage() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h4 className={styles.modalTitle}>Cancel Consultation</h4>
-            <p style={{ margin: 0, fontSize: "0.85rem", color: "#a08060" }}>
+            <p style={{ margin: 0, fontSize: "0.85rem", color: "#618764" }}>
               Are you sure you want to cancel your consultation with <strong>Dr. {cancellingAppt.doctor.fullName}</strong> on {formatDate(cancellingAppt.scheduledAt)}?
             </p>
             <div className={styles.formGroup}>

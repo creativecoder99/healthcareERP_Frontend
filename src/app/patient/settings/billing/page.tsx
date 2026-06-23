@@ -33,8 +33,8 @@ const PLAN_LABELS: Record<string, string> = {
 
 const PLAN_COLORS: Record<string, string> = {
   FREE: "#64748b",
-  PRO_6M: "#6366f1",
-  PRO_1Y: "#8b5cf6",
+  PRO_6M: "#618764",
+  PRO_1Y: "#2B5748",
 };
 
 export default function BillingPage() {
@@ -111,7 +111,7 @@ export default function BillingPage() {
           <div className={styles.planInfo}>
             <div
               className={styles.planBadge}
-              style={{ background: `linear-gradient(135deg, ${PLAN_COLORS[sub?.plan ?? "FREE"]}, #a78bfa)` }}
+              style={{ background: `linear-gradient(135deg, ${PLAN_COLORS[sub?.plan ?? "FREE"]}, #9CB080)` }}
             >
               {PLAN_LABELS[sub?.plan ?? "FREE"] ?? sub?.plan ?? "Free"}
             </div>

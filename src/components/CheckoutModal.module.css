@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(12, 16, 51, 0.6);
+  background: rgba(39, 51, 56, 0.6);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 440px;
   position: relative;
-  box-shadow: 0 24px 60px rgba(99, 102, 241, 0.18);
+  box-shadow: 0 24px 60px rgba(97, 135, 100, 0.18);
 }
 
 .closeBtn {
@@ -36,7 +36,7 @@
 
 .planBadge {
   display: inline-block;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #618764, #2B5748);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
@@ -70,11 +70,11 @@
   outline: none;
   transition: border-color 0.2s;
 }
-.couponInput:focus { border-color: #6366f1; }
+.couponInput:focus { border-color: #618764; }
 
 .applyBtn {
   padding: 10px 18px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #618764, #2B5748);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -131,7 +131,7 @@
   padding: 4px 0;
 }
 
-.discount { color: #16a34a; font-weight: 500; }
+.discount { color: #618764; font-weight: 500; }
 
 .total {
   border-top: 1px solid #e2e8f0;
@@ -152,7 +152,7 @@
 .payBtn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #618764 0%, #2B5748 100%);
   color: #fff;
   border: none;
   border-radius: 12px;

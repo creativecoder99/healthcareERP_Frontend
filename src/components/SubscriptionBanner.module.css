@@ -1,14 +1,14 @@
 .banner {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  background: linear-gradient(135deg, #273338 0%, #2B5748 50%, #2B5748 100%);
   border-radius: 16px;
   padding: 24px 28px;
   display: flex;
   align-items: center;
   gap: 20px;
   color: #fff;
-  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 8px 32px rgba(97, 135, 100, 0.25);
 }
 
 .glow {
@@ -17,7 +17,7 @@
   right: -40px;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(43, 87, 72, 0.35) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -62,8 +62,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #f0f0ff;
-  border: 1px solid #c7d2fe;
+  background: #eef1ec;
+  border: 1px solid #9CB080;
   border-radius: 8px;
   padding: 8px 14px;
 }
@@ -72,13 +72,13 @@
 
 .compactText {
   font-size: 13px;
-  color: #4338ca;
+  color: #2B5748;
 }
 
 .compactCta {
   font-size: 12px;
   font-weight: 700;
-  color: #6366f1;
+  color: #618764;
   text-decoration: underline;
 }
-.compactCta:hover { color: #4f46e5; }
+.compactCta:hover { color: #618764; }

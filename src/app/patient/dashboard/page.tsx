@@ -65,7 +65,7 @@ export default function PatientDashboard() {
     return (
       <div style={{ display: "flex", width: "100%", height: "50vh", alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 32, height: 32, border: "3px solid #e0e7ff", borderTop: "3px solid #6366f1", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+          <div style={{ width: 32, height: 32, border: "3px solid #eef1ec", borderTop: "3px solid #618764", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
           <span style={{ fontSize: "0.85rem", color: "#94a3b8", fontWeight: 500 }}>Loading your health vault…</span>
         </div>
@@ -180,9 +180,9 @@ export default function PatientDashboard() {
             <div className={styles.recordsList}>
               {recentRecords.length === 0 ? (
                 <div className={styles.emptyState}>
-                  <FolderOpen size={32} color="#c7d2fe" />
+                  <FolderOpen size={32} color="#9CB080" />
                   <span className={styles.emptyStateText}>No documents yet — your vault is empty.</span>
-                  <Link href="/patient/records" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 18px", background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff", borderRadius: 9, fontSize: "0.83rem", fontWeight: 700, textDecoration: "none" }}>
+                  <Link href="/patient/records" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "8px 18px", background: "linear-gradient(135deg, #618764, #2B5748)", color: "#fff", borderRadius: 9, fontSize: "0.83rem", fontWeight: 700, textDecoration: "none" }}>
                     <Plus size={13} /> Upload First File
                   </Link>
                 </div>
@@ -267,15 +267,15 @@ export default function PatientDashboard() {
             </div>
             {healthScore?.score != null ? (
               <div style={{ display: "flex", alignItems: "center", gap: 20, padding: "16px 20px", background: "#f8fafc", borderRadius: 12, border: "1px solid #e2e8f0" }}>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: "50%", background: healthScore.score >= 85 ? "#dcfce7" : healthScore.score >= 70 ? "#e0e7ff" : healthScore.score >= 50 ? "#fff7ed" : "#fee2e2", flexShrink: 0 }}>
-                  <span style={{ fontSize: "1.4rem", fontWeight: 800, color: healthScore.score >= 85 ? "#16a34a" : healthScore.score >= 70 ? "#6366f1" : healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 64, height: 64, borderRadius: "50%", background: healthScore.score >= 85 ? "#eef1ec" : healthScore.score >= 70 ? "#eef1ec" : healthScore.score >= 50 ? "#fff7ed" : "#fee2e2", flexShrink: 0 }}>
+                  <span style={{ fontSize: "1.4rem", fontWeight: 800, color: healthScore.score >= 85 ? "#618764" : healthScore.score >= 70 ? "#618764" : healthScore.score >= 50 ? "#f97316" : "#ef4444" }}>
                     {healthScore.score}
                   </span>
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ fontWeight: 700, fontSize: "1rem", color: "#0f172a" }}>{healthScore.grade}</span>
-                    <span style={{ display: "flex", alignItems: "center", gap: 3, fontSize: "0.78rem", fontWeight: 600, color: healthScore.trend === "improving" ? "#16a34a" : healthScore.trend === "declining" ? "#ef4444" : "#94a3b8" }}>
+                    <span style={{ display: "flex", alignItems: "center", gap: 3, fontSize: "0.78rem", fontWeight: 600, color: healthScore.trend === "improving" ? "#618764" : healthScore.trend === "declining" ? "#ef4444" : "#94a3b8" }}>
                       {healthScore.trend === "improving" ? <TrendingUp size={13} /> : healthScore.trend === "declining" ? <TrendingDown size={13} /> : <Minus size={13} />}
                       {healthScore.trend}
                     </span>
