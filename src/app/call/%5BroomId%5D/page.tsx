@@ -479,8 +479,9 @@ export default function CallPage({ params }: { params: Promise<{ roomId: string 
       <div className={styles.mainArea}>
         {/* Header */}
         <header className={styles.header}>
-          <div className={styles.logo}>
-            Medi<span>Core</span> Virtual Consult
+          <div className={styles.logo} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <img src="/images/logo_icon.png" alt="MediCore" style={{ width: 22, height: 22, objectFit: "contain" }} />
+            <span>Medi<span>Core</span> Virtual Consult</span>
           </div>
           <div className={styles.apptInfo}>
             {user!.role === "DOCTOR" ? "Patient: " : "Doctor: "}

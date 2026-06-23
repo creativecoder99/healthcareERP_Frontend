@@ -209,10 +209,7 @@ export default function LoginPage() {
       {/* ── Header ─────────────────────────────────────────────────── */}
       <header className={styles.pageHeader}>
         <Link href="/" className={styles.logoLink}>
-          <div className={styles.logoIcon}>
-            <Activity size={19} color="#fff" strokeWidth={2.5} />
-          </div>
-          <span className={styles.logoText}>MediCore</span>
+          <img src="/images/logo_full.png" alt="MediCore" style={{ height: "36px", width: "auto" }} />
         </Link>
         <Link href="/" className={styles.backLink}>
           <ArrowLeft size={14} /> Back to Home

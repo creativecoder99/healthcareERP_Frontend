@@ -384,7 +384,7 @@ export default function ChatPage() {
         {!disclaimerAccepted ? (
           <div className={styles.landingView}>
             <div className={styles.landingLogoWrap}>
-              <Brain size={32} />
+              <img src="/images/logo_icon.png" alt="MediCore AI" style={{ width: 44, height: 44, objectFit: "contain" }} />
             </div>
             <h2 className={styles.landingTitle}>MediCore AI Health Assistant</h2>
             <p className={styles.landingText}>
@@ -413,7 +413,7 @@ export default function ChatPage() {
         ) : !activeSessionId ? (
           <div className={styles.landingView}>
             <div className={styles.landingLogoWrap}>
-              <Sparkles size={32} />
+              <img src="/images/logo_icon.png" alt="MediCore AI" style={{ width: 44, height: 44, objectFit: "contain" }} />
             </div>
             <h2 className={styles.landingTitle}>Welcome to MediCore AI</h2>
             <p className={styles.landingText}>

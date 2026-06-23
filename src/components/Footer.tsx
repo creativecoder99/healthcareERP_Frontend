@@ -20,12 +20,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className={styles.brandCol}>
             <a href="#" className={styles.logo} onClick={(e) => handleNavClick(e, "hero")}>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <div style={{ width: 36, height: 36, borderRadius: 8, background: "#143d22", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Activity size={20} color="#ffffff" strokeWidth={2.5} />
-                </div>
-                <span style={{ fontWeight: 800, fontSize: "1.35rem", color: "#ffffff", letterSpacing: "-0.5px" }}>MediCore</span>
-              </div>
+              <img src="/images/logo_full.png" alt="MediCore" className={styles.logoImage} />
             </a>
             <p className={styles.desc}>
               India&apos;s cloud-native, AI-augmented Electronic Health Records platform. Centralise your medical history,

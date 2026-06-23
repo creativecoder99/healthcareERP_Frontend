@@ -83,7 +83,7 @@ export default function DoctorLayout({ children }: { children: React.ReactNode }
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
         <Link href="/doctor/dashboard" className={styles.sidebarBrand}>
           <div className={styles.brandIcon}>
-            <Activity size={18} color="#fff" strokeWidth={2.5} />
+            <img src="/images/logo_icon.png" alt="MediCore" style={{ width: 20, height: 20, objectFit: "contain" }} />
           </div>
           <span className={styles.brandText}>MediCore</span>
           <span className={styles.brandBadge}>Doctor</span>
