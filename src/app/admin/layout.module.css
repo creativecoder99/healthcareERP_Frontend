@@ -1,0 +1,248 @@
+.adminShell {
+  position: relative;
+  min-height: 100vh;
+  background-color: #050409;
+  color: #e2e8f0;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  padding-top: 50px;
+  padding-bottom: 110px;
+}
+
+/* Grid & Glow overlays */
+.gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.glowRadial {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 60%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+}
+
+/* Secure Top status header bar */
+.topStatus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: rgba(10, 9, 18, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  z-index: 100;
+}
+
+.sysTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #a78bfa;
+}
+
+.terminalIcon {
+  color: #3b82f6;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseGlow 1.5s infinite alternate;
+}
+
+.textGlow {
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+.sysMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.adminBadge {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.adminEmail {
+  color: #e2e8f0;
+  font-family: monospace;
+}
+
+.metaDivider {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+/* Panel content */
+.panelContent {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* HUD bottom navigation dock */
+.hudDockWrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.hudDock {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 11, 23, 0.65);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  padding: 8px 16px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+              inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hudDock:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 15px 45px rgba(6, 182, 212, 0.15), 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.dockItem, .dockSignOut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dockItem:hover {
+  transform: translateY(-6px);
+  color: #06b6d4;
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.dockItemActive {
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.dockItemActive::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  background-color: #8b5cf6;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #8b5cf6;
+}
+
+.dockSignOut:hover {
+  transform: translateY(-6px);
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.dockDivider {
+  width: 1px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: 0 4px;
+}
+
+.dockLabel {
+  display: none; /* Icon only, with labels on hover/expanded tooltips if desired */
+}
+
+/* Loading gate screen */
+.loadingContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #050409;
+  color: #3b82f6;
+  font-family: monospace;
+}
+
+.loadingPulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.loadingIcon {
+  color: #3b82f6;
+  animation: pulseGlow 1.2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from {
+    transform: scale(0.9);
+    opacity: 0.5;
+    filter: drop-shadow(0 0 2px rgba(59, 130, 246, 0.3));
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.7));
+  }
+}
