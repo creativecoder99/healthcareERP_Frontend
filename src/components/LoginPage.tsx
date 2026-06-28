@@ -179,6 +179,10 @@ export default function LoginPage() {
         setTimeout(() => {
           if (responseData.user.role === "PATIENT") {
             router.push("/patient/dashboard");
+          } else if (responseData.user.role === "DOCTOR") {
+            router.push("/doctor/dashboard");
+          } else if (responseData.user.role === "PLATFORM_ADMIN") {
+            router.push("/admin");
           } else {
             router.push("/");
           }
